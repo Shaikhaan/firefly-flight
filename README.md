@@ -16,3 +16,8 @@ Controls:
 
 Your best score is saved to firefly_best.txt next to the game.
 Tweak gravity, speed and gap size at the top of firefly.py.
+
+Build the Windows app (FireflyFlight.exe):
+    pip install -r requirements.txt pyinstaller pillow
+    python build_app.py
+The exe appears in dist/. It runs without Python installed.

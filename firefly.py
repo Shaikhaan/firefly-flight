@@ -7,6 +7,7 @@ Requires: pip install pygame-ce
 
 import math
 import random
+import sys
 from pathlib import Path
 
 import pygame
@@ -22,7 +23,10 @@ CAP_OVER = 12  # mushroom cap overhang past the trunk
 SPACING = 260.0
 FLY_X = 130.0
 FLY_R = 12.0
-BEST_FILE = Path(__file__).with_name("firefly_best.txt")
+# A packaged exe unpacks to a temp folder, so keep the score next to the exe instead.
+APP_DIR = Path(sys.executable).parent if getattr(sys, "frozen", False) else Path(__file__).parent
+BEST_FILE = APP_DIR / "firefly_best.txt"
+ICON_FILE = Path(getattr(sys, "_MEIPASS", Path(__file__).parent)) / "icon.png"
 
 SKY_TOP = (8, 10, 36)
 SKY_BOTTOM = (46, 28, 84)
@@ -310,6 +314,8 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode((W, H))
     pygame.display.set_caption("Firefly Flight")
+    if ICON_FILE.exists():
+        pygame.display.set_icon(pygame.image.load(ICON_FILE))
     clock = pygame.time.Clock()
     game = Game()
 

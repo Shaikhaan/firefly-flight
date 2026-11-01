@@ -2,3 +2,7 @@ __pycache__/
 firefly_best.txt
 *.zip
 *.exe
+build/
+dist/
+*.spec
+icon.png
